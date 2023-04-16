@@ -7,11 +7,13 @@ describe('My First Test Suite', function()
     cy.wait(2000)
     cy.get('.product:visible').should('have.length',4)
     //Parent child chaining
-    cy.get('.products').find('.product').should('have.length',4)
+    //use aliases to reuse DOM elements as.()
+    cy.get('.products').as('productsLocator')
+    cy.get('@productsLocator').find('.product').should('have.length',4)
     //cy.get('.products').find('.product').eq(2).contains('ADD TO CART').click()
 
     //dynamically finding a product, clicking to add to cart
-    cy.get('.products').find('.product').each(($el, index, $list) => {
+    cy.get('@productsLocator').find('.product').each(($el, index, $list) => {
         // $el is a wrapped jQuery element
 
         const vegText = $el.find('h4.product-name').text()
