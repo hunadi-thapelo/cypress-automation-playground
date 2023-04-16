@@ -9,7 +9,9 @@ describe('My First Test Suite', function()
     //Parent child chaining
     //use aliases to reuse DOM elements as.()
     cy.get('.products').as('productsLocator')
-    cy.get('@productsLocator').find('.product').should('have.length',4)
+    cy.get('@productsLocator').find('.product').should('have.length',4).then(function(){
+        console.log('print')
+    })
     //cy.get('.products').find('.product').eq(2).contains('ADD TO CART').click()
 
     //dynamically finding a product, clicking to add to cart
