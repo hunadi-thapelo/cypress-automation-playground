@@ -25,6 +25,10 @@ describe('My First Test Suite', function()
         }
     })
 
+    //this is to assert logo text is correctly displayed
+    cy.get('.brand').should('have.text','GREENKART')
+
+    //this is to print in logs
     cy.get('.brand').then(function(logoelement)
     {
         cy.log(logoelement.text())
