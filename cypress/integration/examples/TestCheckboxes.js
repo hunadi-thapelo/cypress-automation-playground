@@ -9,9 +9,9 @@ describe('My First Test Suite', function()
     //requirement: uncheck option1, assert if unchecked
     cy.get('#checkBoxOption1').uncheck().should('not.be.checked')
 
-
     //requirement: check multiple checkboxes, option 2 and option 3, assert if checked, assert if value is option1
-    
+    //check() accepts arguments array of value property passed
+    cy.get('input[type="checkbox"]').check(['option2', 'option3'])
 
 
 
