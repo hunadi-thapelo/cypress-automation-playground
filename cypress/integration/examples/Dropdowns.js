@@ -22,6 +22,10 @@ describe('My First Test Suite', function()
       }
   })
 
+  cy.get('#autocomplete').should('have.value', 'Montserrat')
+
+
+
 
 
 
