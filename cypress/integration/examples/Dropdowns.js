@@ -22,7 +22,15 @@ describe('My First Test Suite', function()
       }
   })
 
-  cy.get('#autocomplete').should('have.value', 'Montserrat')
+    cy.get('#autocomplete').should('have.value', 'Montserrat')
+    
+   //Handling visible and invisible elements
+    cy.get('#displayed-text').should('be.visible')
+    cy.get('#hide-textbox').click()
+    cy.get('#displayed-text').should('not.be.visible')
+    cy.get('#show-textbox').click()
+    cy.get('#displayed-text').should('be.visible')
+
 
 
 
