@@ -15,7 +15,14 @@ describe('My First Test Suite', function()
       expect(str).to.equal('Hello Mellow, share this practice page and share your knowledge');
     })
 
+    //Handling auto window alert confirm 
+    cy.get('[value="Confirm"]').click()
 
+    // fire event with method on
+    cy.on('window:confirm',(str)=>{
+      //assertions using Mocha (e.g should)
+      expect(str).to.equal('Hello , Are you sure you want to confirm?');
+    })
 
 
    })
