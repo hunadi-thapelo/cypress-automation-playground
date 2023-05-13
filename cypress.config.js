@@ -7,4 +7,7 @@ module.exports = defineConfig({
     },
     specPattern: 'cypress/integration/examples/*.js'
   },
+  //"chromeWebSecurity": false,
+  "experimentalSessionAndOrigin": true
+
 });
