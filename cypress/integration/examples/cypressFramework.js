@@ -26,8 +26,10 @@ describe('Cypress Framework', function()
     cy.get('#inlineRadio3').should('be.disabled')
 
     cy.get(':nth-child(2) > .nav-link').click()
-    cy.selectProduct('Samsung Note 8')
+    //cy.selectProduct('Samsung Note 8') //selects one product to cart
     
+    //Requirement select and add 2 products to cart
+    this.data.productName.forEach((element) => cy.selectProduct(element))
 
    })
 
