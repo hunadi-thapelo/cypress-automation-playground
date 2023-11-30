@@ -1,3 +1,5 @@
+///<reference types= "cypress" />
+
 describe('Cypress Framework', function()
 {
     before(() => {
@@ -20,6 +22,8 @@ describe('Cypress Framework', function()
     cy.get(':nth-child(4) > .ng-untouched').should('have.value', this.data.name)
     //requirement: validate if propery min length is correct - simply assertion to check
     cy.get('input[name="name"]:nth-child(2)').should('have.attr','minlength', '2')
+     //requirement: validate if propery is in disabled behvaiour
+    cy.get('#inlineRadio3').should('be.disabled')
    })
 
 })
