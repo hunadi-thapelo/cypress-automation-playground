@@ -18,6 +18,8 @@ describe('Cypress Framework', function()
     cy.get('select').select(this.data.gender)
     //requirement: validate if value entered is same as name value entered
     cy.get(':nth-child(4) > .ng-untouched').should('have.value', this.data.name)
+    //requirement: validate if propery min length is correct - simply assertion to check
+    cy.get('input[name="name"]:nth-child(2)').should('have.attr','minlength', '2')
    })
 
 })
