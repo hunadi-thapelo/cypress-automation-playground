@@ -1,5 +1,6 @@
 {
   "name": "Naledi Enhle",
   "gender": "Female",
-  "productName": ["Samsung Note 8", "Blackberry"]
+  "productName": ["Samsung Note 8", "Blackberry"],
+  "countryName": "Germany"
 }
