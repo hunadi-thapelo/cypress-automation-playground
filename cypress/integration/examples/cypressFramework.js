@@ -48,6 +48,16 @@ describe('Cypress Framework', function()
     this.data.productName.forEach((element) => cy.selectProduct(element))
 
     myProductPage.getCheckOutCart().click()
+    cy.get('tr td:nth-child(4) strong').each(($el, index, $list) => {
+
+        //cy.log($el.text()) //logs text grabbed
+        const elText = $el.text()
+        var result = elText.split(" ")
+        result = result[1].trim()
+        cy.log(result)
+       
+    })
+
 
     myCartPage.getCheckOutSuccess().click()
 
