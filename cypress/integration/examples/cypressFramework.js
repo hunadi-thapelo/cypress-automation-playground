@@ -1,6 +1,8 @@
 ///<reference types= "cypress" />
 import homePage from '../pageObjects/homePage.js';
-
+import productPage from '../pageObjects/productPage.js';
+import cartPage from '../pageObjects/cartPage.js';
+import purchasePage from '../pageObjects/purchasePage.js';
 
 describe('Cypress Framework', function()
 {
@@ -17,6 +19,9 @@ describe('Cypress Framework', function()
    it('My TC with before hook', function()
    {
     const myHomePage = new homePage()
+    const myProductPage = new productPage()
+    const myCartPage = new cartPage()
+    const myPurchasePage = new purchasePage()
 
     cy.visit('https://rahulshettyacademy.com/angularpractice/')
 
@@ -33,7 +38,7 @@ describe('Cypress Framework', function()
     //requirement: validate if propery is in disabled behvaiour
     myHomePage.getEntreprenuer().should('be.visible')
 
-     
+    Cypress.config('defaultCommandTimeout', 9000)
     //Navigates to Shop ecommerce tab
     myHomePage.getShopTab().click()
 
@@ -42,6 +47,23 @@ describe('Cypress Framework', function()
     //Requirement select and add 2 products to cart
     this.data.productName.forEach((element) => cy.selectProduct(element))
 
-   })
+    myProductPage.getCheckOutCart().click()
+
+    myCartPage.getCheckOutSuccess().click()
+
+
+    //new page
+    myPurchasePage.getLocationInput().type(this.data.countryName)
+    myPurchasePage.getSuggestionDropdown().click()
+    myPurchasePage.getCheckbox().click({force: true})
+    myPurchasePage.getPurchaseBtn().click()
+    //cy.get('.alert').should('have.text', 'Success! Thank you! Your order will be delivered in next few weeks :-).')
+    cy.get('.alert').then(function(element){
+        const actualText =element.text()
+        expect(actualText.includes("Success")).to.be.true
+    })
+ 
+
+})
 
 })
