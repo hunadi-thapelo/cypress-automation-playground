@@ -23,6 +23,8 @@ describe('Cypress Framework', function()
     const myCartPage = new cartPage()
     const myPurchasePage = new purchasePage()
 
+    var totalSum = 0
+
     cy.visit('https://rahulshettyacademy.com/angularpractice/')
 
     myHomePage.getNameInputField().type(this.data.name)
@@ -51,12 +53,22 @@ describe('Cypress Framework', function()
     cy.get('tr td:nth-child(4) strong').each(($el, index, $list) => {
 
         //cy.log($el.text()) //logs text grabbed
-        const elText = $el.text()
-        var result = elText.split(" ")
+        const eleText = $el.text()
+        var result = eleText.split(" ")
         result = result[1].trim()
-        cy.log(result)
-       
+        totalSum = parseInt(totalSum) + parseInt(result)
+    }).then(function(){
+        cy.log(totalSum)
+    }) //When to resolve the promise: when handling non-cypress code/methods
+
+    cy.get('h3 strong').then(function(element){
+                //cy.log($el.text()) //logs text grabbed
+                const eleAmount = element.text()
+                var amountRes = eleAmount.split(" ")
+                var total = amountRes[1].trim()
+                expect(parseInt(total)).to.equal(totalSum)
     })
+
 
 
     myCartPage.getCheckOutSuccess().click()
